@@ -69,6 +69,10 @@ class ControllerCommonHeader extends Controller {
 		$data['shopping_cart'] = $this->url->link('checkout/cart');
 		$data['checkout'] = $this->url->link('checkout/checkout', '', true);
 		$data['contact'] = $this->url->link('information/contact');
+		$data['special'] = $this->url->link('product/special');
+		$data['sitemap'] = $this->url->link('information/sitemap');
+		$data['brand'] = $this->url->link('product/manufacturer');
+		$data['return'] = $this->url->link('account/return/add');
 		$data['telephone'] = $this->config->get('config_telephone');
 		
 		$data['language'] = $this->load->controller('common/language');
@@ -76,6 +80,8 @@ class ControllerCommonHeader extends Controller {
 		$data['search'] = $this->load->controller('common/search');
 		$data['cart'] = $this->load->controller('common/cart');
 		$data['menu'] = $this->load->controller('common/menu');
+
+		$data['compare'] = $this->url->link('product/compare');
 
 		return $this->load->view('common/header', $data);
 	}

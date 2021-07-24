@@ -1,8 +1,6 @@
 <?php
 // Text
-// Edit text_items by Plazathemes
-$_['text_items']     = '<span class="txt-count">%s</span><span class="text-item"> My Cart </span><span class="text-cart">%s</span>';
-// End edit
+$_['text_items']     = '<span class="hidden-xs hidden-sm cartna">My cart</span><br class="hidden-xs hidden-sm"><span class="cartt">%s</span><span class="hidden-xs hidden-sm"> Items </span><span class="hidden-xs hidden-sm">%s</span>';
 $_['text_empty']     = 'Your shopping cart is empty!';
 $_['text_cart']      = 'View Cart';
 $_['text_checkout']  = 'Checkout';

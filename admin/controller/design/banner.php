@@ -19,6 +19,9 @@ class ControllerDesignBanner extends Controller {
 
 		$this->load->model('design/banner');
 
+		// winter desc
+        $this->model_design_banner->addDescriptionColumnIfNotExist();
+
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_design_banner->addBanner($this->request->post);
 
@@ -50,6 +53,9 @@ class ControllerDesignBanner extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('design/banner');
+
+		// winter desc
+        $this->model_design_banner->addDescriptionColumnIfNotExist();
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_design_banner->editBanner($this->request->get['banner_id'], $this->request->post);
@@ -349,6 +355,9 @@ class ControllerDesignBanner extends Controller {
 				}
 				
 				$data['banner_images'][$key][] = array(
+					// winter desc
+					'description' => $banner_image['description'],
+
 					'title'      => $banner_image['title'],
 					'link'       => $banner_image['link'],
 					'image'      => $image,

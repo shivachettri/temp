@@ -1,17 +1,16 @@
 <?php
 // Heading
 $_['heading_title'] = 'My Wish List';
+$_['cheading_title'] = 'My Wish List';
 
 // Text
 $_['text_account']  = 'Account';
 $_['text_instock']  = 'In Stock';
-// Edit by Plazathemes
-$_['text_wishlist']      = '<span class="text-wishlist">Wish List</span> <span class="txt-count">%s</span>';
-// End edit
-$_['text_login']    = 'You must <a href="%s">login</a> or <a href="%s">create an account</a> to save <a href="%s">%s</a> to your <a href="%s">wish list</a>!';
-$_['text_success']  = 'Success: You have added <a href="%s">%s</a> to your <a href="%s">wish list</a>!';
-$_['text_remove']   = 'Success: You have modified your wish list!';
-$_['text_empty']    = 'Your wish list is empty.';
+$_['text_wishlist'] = 'Wish List (%s)';
+$_['text_login']    = '<h2>Success !!</h2>You must <a href="%s">login</a> or <a href="%s">create an account</a> to save <a href="%s">%s</a> to your <a href="%s">wish list</a>!';
+$_['text_success']  = '<h2>Success!!</h2> You have added <a href="%s">%s</a> to your <a href="%s">wish list</a>!';
+$_['text_remove']   = '<h2>Success!!</h2> You have modified your wish list!';
+$_['ctext_empty']    = 'Your wish list is empty.';
 
 // Column
 $_['column_image']  = 'Image';

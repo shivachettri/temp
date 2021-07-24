@@ -1,0 +1,62 @@
+<div class="homecategory next-prevb">
+<h1 class="heading"><span>{{ cheading_title }}</span></h1>
+            <div id="featured_category" >
+                <div class="row rless">
+                <div id="cat-img" class="owl-carousel owl-theme">
+                    {% for category in categories %}
+                        {% if category.category_id == category_id %}
+                            <div class="block-cat-wr col-xs-12 cless">
+                                <div class="categorybr">
+                                <a href="{{ category.href }}">
+                                {% if category.image_name %}
+                                    <img src="{{ category.image_name }}" class="img-responsive center-block" alt="">
+                                {% else %}
+                                    <img src="image/no_image.png" class="img-responsive center-block" alt="">
+                                {% endif %}
+
+                                <h5><span>{{ category.name }}</span></h5>
+                                {# <h6><span class="btn btn-primary">view all</span></h6> #}
+                                </a>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="block-cat-wr col-xs-12 cless text-center">
+                                <div class="categorybr">
+                                    <a href="{{ category.href }}">
+                                    {% if category.image_name %}
+                                        <a href="{{ category.href }}"><img src="{{ category.image_name }}" class="img-responsive center-block" alt=""></a>
+                                    {% else %}
+                                        <a href="{{ category.href }}"><img src="image/no_image.png" class="img-responsive center-block" alt=""></a>
+                                    {% endif %}
+                                    </a>
+                                    <h5><a href="{{ category.href }}">{{ category.name }}</a></h5>
+                                </div>
+                                
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                     </div>
+                </div>
+            </div>
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("#cat-img").owlCarousel({
+    itemsCustom : [
+    [0, 1],
+    [320, 2],
+    [400, 2],
+    [600, 3],
+    [768, 2],
+    [992, 3],
+    [1200, 4],
+    [1410, 5]
+    ],
+      autoPlay: false,
+      navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+      navigation : true,
+      pagination:false
+    });
+    });
+</script>

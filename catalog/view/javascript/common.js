@@ -1,19 +1,14 @@
 function getURLVar(key) {
 	var value = [];
-
 	var query = String(document.location).split('?');
-
 	if (query[1]) {
 		var part = query[1].split('&');
-
 		for (i = 0; i < part.length; i++) {
 			var data = part[i].split('=');
-
 			if (data[0] && data[1]) {
 				value[data[0]] = data[1];
 			}
 		}
-
 		if (value[key]) {
 			return value[key];
 		} else {
@@ -23,34 +18,6 @@ function getURLVar(key) {
 }
 
 $(document).ready(function() {
-	$('.product-thumb .product-item').hover(
-		function(){
-			$(this).closest('.products-container').addClass('item-hover');
-		},
-		function(){
-			$(this).closest('.products-container').removeClass('item-hover');
-		}
-	);
-	$('.horizontal-menu .ul-top-items .li-top-item').hover(
-		function(){
-			$(this).closest('.col-hoz').addClass('item-hover');
-		},
-		function(){
-			$(this).closest('.col-hoz').removeClass('item-hover');
-		}
-	);
-	// Custom move breadcrumb by Plazathemes
-	$("body:not(.common-home) header").after('<div class="breadcrumbs"><div class="container"><div class="container-inner"></div></div></div>');	
-	var breadcrumb = $('body ul.breadcrumb');
-	var breadcrumbs = $('.breadcrumbs');
-	var breadcrumbs_container = $('.breadcrumbs .container .container-inner');
-	var breadcrumbs_container2 = $('.breadcrumbs .container');
-	var page_title_h1 = $('#content > h1');
-	//var category_image = $('.category-image');
-	page_title_h1.appendTo(breadcrumbs_container);
-	breadcrumb.appendTo(breadcrumbs_container);
-	//category_image.appendTo(breadcrumbs);
-	
 	// Highlight any found errors
 	$('.text-danger').each(function() {
 		var element = $(this).parent().parent();
@@ -88,6 +55,13 @@ $(document).ready(function() {
 			url += '&search=' + encodeURIComponent(value);
 		}
 
+		// madebyhand Search Start 
+        var category_id = $('#madebyhand-search-category').val();
+        if (category_id > 0) {
+            url += '&category_id=' + encodeURIComponent(category_id);
+        }
+        // madebyhand Search END
+
 		location = url;
 	});
 
@@ -96,6 +70,35 @@ $(document).ready(function() {
 			$('header #search input[name=\'search\']').parent().find('button').trigger('click');
 		}
 	});
+
+	/* Copyright (C) madebyhand Infotech, Inc - All Rights Reserved
+     * Unauthorized copying of this file, via any medium is strictly prohibited
+     * Proprietary and confidential
+     * Written by Romit Sachani <info@madebyhandinfotech.com>, March 2019
+     */  
+    // madebyhand Search Start 
+    $(".madebyhand-search").keyup(function(){
+        if(($(this).val()).length >= 3) {
+            var category_id = $('#madebyhand-search-category').val();
+            //console.log(category_id);
+            $.ajax({
+                url: 'index.php?route=common/madebyhand_search/search',
+                type: 'post',
+                data : 'search_string=' + $(this).val() + '&category_id=' + category_id,
+                beforeSend  : function () {
+                    $('.madebyhand-search-loader').show();
+                },
+                success: function(result){
+                    $('.madebyhand-search-result').html(result);
+                    $('.madebyhand-search-loader').hide();
+                }
+            });
+        }
+        else {
+            $('.madebyhand-search-result').html('');
+        }
+    });
+    // madebyhand Search END
 
 	// Menu
 	$('#menu .dropdown-menu').each(function() {
@@ -116,9 +119,7 @@ $(document).ready(function() {
 		$('#content .row > .product-grid').attr('class', 'product-layout product-list col-xs-12');
 		$('#grid-view').removeClass('active');
 		$('#list-view').addClass('active');
-		$(".product-thumb .product-item").each(function() {
-			
-		});
+
 		localStorage.setItem('display', 'list');
 	});
 
@@ -128,18 +129,16 @@ $(document).ready(function() {
 		var cols = $('#column-right, #column-left').length;
 
 		if (cols == 2) {
-			$('#content .product-list').attr('class', 'product-layout product-grid grid-style col-lg-6 col-md-6 col-sm-6 col-xs-6 product-items');
+			$('#content .product-list').attr('class', 'product-layout product-grid col-lg-3 col-md-4 col-sm-6 col-xs-12');
 		} else if (cols == 1) {
-			$('#content .product-list').attr('class', 'product-layout product-grid grid-style col-lg-4 col-md-4 col-sm-6 col-xs-6 product-items');
+			$('#content .product-list').attr('class', 'product-layout product-grid col-lg-3 col-md-4 col-sm-6 col-xs-12');
 		} else {
-			$('#content .product-list').attr('class', 'product-layout product-grid grid-style col-lg-3 col-md-3 col-sm-6 col-xs-6 product-items');
+			$('#content .product-list').attr('class', 'product-layout product-grid col-lg-3 col-md-4 col-sm-6 col-xs-12');
 		}
 
 		$('#list-view').removeClass('active');
 		$('#grid-view').addClass('active');
-		$(".product-thumb .product-item").each(function() {
-			
-		});
+
 		localStorage.setItem('display', 'grid');
 	});
 
@@ -182,26 +181,23 @@ var cart = {
 				$('#cart > button').button('reset');
 			},
 			success: function(json) {
-				$('.alert-dismissible, .text-danger').remove();
-
-				if (json['redirect']) {
-					location = json['redirect'];
-				}
-
-				if (json['success']) {
-					$('#content').parent().before('<div class="alert alert-fix alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-
-					// Need to set timeout otherwise it wont update the total
-					setTimeout(function () {
-						$('#cart > button').html('<span id="cart-total">' + json['total'] + '</span>');
-					}, 100);
-
-					//$('html, body').animate({ scrollTop: 0 }, 'slow');
-
-					$('#cart > ul').load('index.php?route=common/cart/info ul li');
-					//$('#cart').addClass("open");
-				}
-			},
+                $('.alert-dismissible, .text-danger').remove();
+                if (json.redirect) {
+                    location = json.redirect
+                }
+                if (json.success) {
+                    $('#content').parent().before('<div class="a-one"><div class="alert alert-success alert-dismissible alertsuc"><svg width="20px" height="20px"> <use xlink:href="#successi"></use> </svg> ' + json.success + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div></div>');
+                    
+                    setTimeout(function() {
+                        $('#cart > button').html('<svg><use xlink:href="#hcart"></use></svg><span id="cart-total">' + json['total'] + '</span>');
+                    }, 100);
+                    $('.a-one').delay(5000).fadeOut();
+                    $('#cart > ul').load('index.php?route=common/cart/info ul li')
+                    $("button.close").click(function() {
+                        $(".a-one").remove();
+                    })
+                }
+            },
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
@@ -222,7 +218,7 @@ var cart = {
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<span id="cart-total">' + json['total'] + '</span>');
+					$('#cart > button').html('<svg><use xlink:href="#hcart"></use></svg><span id="cart-total">' + json['total'] + '</span>');
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
@@ -230,7 +226,6 @@ var cart = {
 				} else {
 					$('#cart > ul').load('index.php?route=common/cart/info ul li');
 				}
-				//$('#cart').addClass("open");
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -252,7 +247,7 @@ var cart = {
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<span id="cart-total">' + json['total'] + '</span>');
+					$('#cart > button').html('<svg><use xlink:href="#hcart"></use></svg><span id="cart-total">' + json['total'] + '</span>');
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
@@ -287,7 +282,7 @@ var voucher = {
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<span id="cart-total">' + json['total'] + '</span>');
+					$('#cart > button').html('<svg><use xlink:href="#hcart"></use></svg><span id="cart-total">' + json['total'] + '</span>');
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
@@ -311,21 +306,20 @@ var wishlist = {
 			data: 'product_id=' + product_id,
 			dataType: 'json',
 			success: function(json) {
-				$('.alert-dismissible').remove();
-
-				if (json['redirect']) {
-					location = json['redirect'];
-				}
-
-				if (json['success']) {
-					$('#content').parent().before('<div class="alert alert-fix alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-				}
-
-				$('#wishlist-total span').html(json['total']);
-				//$('#wishlist-total').attr('title', json['total']);
-
-				//$('html, body').animate({ scrollTop: 0 }, 'slow');
-			},
+                $('.alert-dismissible').remove();
+                if (json.redirect) {
+                    location = json.redirect
+                }
+                if (json.success) {
+                    $('#content').parent().before('<div class="a-one"><div class="alert alert-success alert-dismissible alertsuc"><svg width="20px" height="20px"> <use xlink:href="#successi"></use> </svg> ' + json.success + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div></div>');
+                }
+                $('#wishlist-total span').html(json.total);
+                $('#wishlist-total').attr('title', json.total);
+                $('.a-one').delay(5000).fadeOut();
+                $("button.close").click(function() {
+                    $(".a-one").remove()
+                })
+            },
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
@@ -344,23 +338,22 @@ var compare = {
 			data: 'product_id=' + product_id,
 			dataType: 'json',
 			success: function(json) {
-				$('.alert-dismissible').remove();
-
-				if (json['success']) {
-					$('#content').parent().before('<div class="alert alert-fix alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-
-					$('#compare-total').html(json['total']);
-
-					//$('html, body').animate({ scrollTop: 0 }, 'slow');
-				}
-			},
+                $('.alert-dismissible').remove();
+                if (json.success) {
+                    $('#content').parent().before('<div class="a-one"><div class="alert alert-success alert-dismissible alertsuc"><svg width="20px" height="20px"> <use xlink:href="#successi"></use> </svg> ' + json.success + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div></div>');
+                    $('#compare-total').html(json.total);
+                    $('.a-one').delay(5000).fadeOut();
+                    $("button.close").click(function() {
+                        $(".a-one").remove()
+                    })
+                }
+            },
 			error: function(xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
 		});
 	},
 	'remove': function() {
-
 	}
 }
 
@@ -522,3 +515,12 @@ $(document).delegate('.agree', 'click', function(e) {
 		});
 	}
 })(window.jQuery);
+
+$(document).ready(function() {
+window.setTimeout(function() {
+    $('.a-one').remove()
+}, 5000);
+$("button.close").click(function() {
+    $(".a-one").remove()
+});
+});

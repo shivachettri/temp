@@ -1,19 +1,10 @@
 <?php
-// Custom for Plazathemes
-$_['button_quickview']            = 'Quick View';
-$_['text_sale'] = "Sale";
-$_['text_new'] = "New";
-$_['text_days']  = "day";
-$_['text_hours'] = "hour";
-$_['text_mins']  = "min";
-$_['text_secs']  = "sec";
-$_['text_countdown']  = "<span>Hurry up!</span> Offer ends in:";
-$_['text_stock']               = 'Availability:';
-$_['text_instock']             = 'In Stock';
 // Locale
 $_['code']                  = 'en';
 $_['direction']             = 'ltr';
-$_['date_format_short']     = 'd/m/Y';
+$_['date_format_short']     = 'd M, Y';
+$_['date_format_shortd']    = 'd';
+$_['date_format_shortm']    = 'M';
 $_['date_format_long']      = 'l dS F Y';
 $_['time_format']           = 'h:i:s A';
 $_['datetime_format']       = 'd/m/Y H:i:s';
@@ -80,6 +71,28 @@ $_['error_upload_7']        = 'Warning: Failed to write file to disk!';
 $_['error_upload_8']        = 'Warning: File upload stopped by extension!';
 $_['error_upload_999']      = 'Warning: No error code available!';
 $_['error_curl']            = 'CURL: Error Code(%s): %s';
+
+// custom
+$_['ltitle']      = 'language :';
+$_['ctitle']      = 'Currency :';
+$_['text_category']      = 'all Categories';
+
+$_['text_deal']      = 'Deals End in:';
+$_['text_carti']	= 'Item : ';
+$_['text_callname']      = 'Customer Support';
+$_['head_title']      = 'trending product';
+$_['fea_title']       = 'featured';
+$_['best_title']      = 'bestseller';
+$_['latest_title']    = 'latest';
+$_['pro_sale']    = 'sale!';
+$_['cat_hed']    = 'category';
+$_['oc_title']    = 'daily of the day';
+
+// footer 
+$_['text_namet']      = 'Contact Info';
+$_['text_emailt']     = 'Email';
+$_['text_telephonet'] = 'Free Support Line!';
+$_['text_faxt']       = 'Fax';
 
 /* When doing translations only include the matching language code */
 

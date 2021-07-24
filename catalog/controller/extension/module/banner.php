@@ -17,6 +17,9 @@ class ControllerExtensionModuleBanner extends Controller {
 		foreach ($results as $result) {
 			if (is_file(DIR_IMAGE . $result['image'])) {
 				$data['banners'][] = array(
+					// winter desc
+					'description' => html_entity_decode($result['description'],  ENT_QUOTES, 'UTF-8'),
+
 					'title' => $result['title'],
 					'link'  => $result['link'],
 					'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])

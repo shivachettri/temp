@@ -1,5 +1,10 @@
-2021-07-13 13:26:30 - PHP Warning:  mysqli::__construct(): (HY000/1049): Unknown database 'ghardailo' in C:\xampp\htdocs\ghardailo\system\library\db\mysqli.php on line 7
-2021-07-13 13:26:30 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in C:\xampp\htdocs\ghardailo\system\library\db\mysqli.php on line 10
-2021-07-13 13:26:30 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in C:\xampp\htdocs\ghardailo\system\library\db\mysqli.php on line 10
-2021-07-13 13:26:30 - PHP Notice:  Undefined variable: mysql in C:\xampp\htdocs\ghardailo\install\controller\install\step_3.php on line 280
-2021-07-13 13:26:30 - PHP Notice:  Trying to get property 'connect_error' of non-object in C:\xampp\htdocs\ghardailo\install\controller\install\step_3.php on line 280
+2021-07-21 19:42:05 - PHP Warning:  mysqli::__construct(): (HY000/1049): Unknown database 'ghardailo' in C:\xampp\htdocs\ghardailo\system\library\db\mysqli.php on line 7
+2021-07-21 19:42:05 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in C:\xampp\htdocs\ghardailo\system\library\db\mysqli.php on line 10
+2021-07-21 19:42:05 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in C:\xampp\htdocs\ghardailo\system\library\db\mysqli.php on line 10
+2021-07-21 19:42:05 - PHP Notice:  Undefined variable: mysql in C:\xampp\htdocs\ghardailo\install\controller\install\step_3.php on line 280
+2021-07-21 19:42:05 - PHP Notice:  Trying to get property 'connect_error' of non-object in C:\xampp\htdocs\ghardailo\install\controller\install\step_3.php on line 280
+2021-07-21 19:42:26 - PHP Warning:  mysqli::__construct(): (HY000/1049): Unknown database 'ghardailo' in C:\xampp\htdocs\ghardailo\system\library\db\mysqli.php on line 7
+2021-07-21 19:42:26 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in C:\xampp\htdocs\ghardailo\system\library\db\mysqli.php on line 10
+2021-07-21 19:42:26 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in C:\xampp\htdocs\ghardailo\system\library\db\mysqli.php on line 10
+2021-07-21 19:42:26 - PHP Notice:  Undefined variable: mysql in C:\xampp\htdocs\ghardailo\install\controller\install\step_3.php on line 280
+2021-07-21 19:42:26 - PHP Notice:  Trying to get property 'connect_error' of non-object in C:\xampp\htdocs\ghardailo\install\controller\install\step_3.php on line 280

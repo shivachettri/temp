@@ -1,6 +1,4 @@
 <?php
-// Custom by Plazathemes
-$_['text_module_related']              = 'Add related products to weekly line up';
 // Text
 $_['text_search']              = 'Search';
 $_['text_brand']               = 'Brand';

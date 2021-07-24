@@ -1,9 +1,10 @@
 <?php
 // Heading
 $_['heading_title']     = 'Special Offers';
+$_['cheading_title']     = 'Special Offers';
 
 // Text
-$_['text_empty']        = 'There are no special offer products to list.';
+$_['ctext_empty']        = 'There are no special offer products to list.';
 $_['text_quantity']     = 'Qty:';
 $_['text_manufacturer'] = 'Brand:';
 $_['text_model']        = 'Product Code:';

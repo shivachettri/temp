@@ -3,12 +3,10 @@
 $_['heading_title']            = 'Shopping Cart';
 
 // Text
-$_['text_success']             = 'Success: You have added <a href="%s">%s</a> to your <a href="%s">shopping cart</a>!';
-$_['text_remove']              = 'Success: You have modified your shopping cart!';
+$_['text_success']             = '<h2>success!!</h2> You have added <a href="%s">%s</a> to your <a href="%s">shopping cart</a>!';
+$_['text_remove']              = '<h2>success!!</h2> You have modified your shopping cart!';
 $_['text_login']               = 'Attention: You must <a href="%s">login</a> or <a href="%s">create an account</a> to view prices!';
-// Edit text_items by Plazathemes
-$_['text_items']     = '<span class="txt-count">%s</span><span class="text-item"> My Cart </span><span class="text-cart">%s</span>';
-//
+$_['text_items']               = '<span class="hidden-xs hidden-sm cartna">My cart</span><br class="hidden-xs hidden-sm"><span class="cartt">%s</span><span class="hidden-xs hidden-sm"> Items </span><span class="hidden-xs hidden-sm">%s</span>';
 $_['text_points']              = 'Reward Points: %s';
 $_['text_next']                = 'What would you like to do next?';
 $_['text_next_choice']         = 'Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.';

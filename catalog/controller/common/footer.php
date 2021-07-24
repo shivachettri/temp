@@ -7,6 +7,11 @@ class ControllerCommonFooter extends Controller {
 
 		$data['informations'] = array();
 
+		$data['footer_left'] = $this->load->controller('common/footer_left');
+		$data['footer_right'] = $this->load->controller('common/footer_right');
+		$data['ftop_full'] = $this->load->controller('common/ftop_full');
+		$data['fbottom_full'] = $this->load->controller('common/fbottom_full');
+
 		foreach ($this->model_catalog_information->getInformations() as $result) {
 			if ($result['bottom']) {
 				$data['informations'][] = array(
@@ -16,6 +21,17 @@ class ControllerCommonFooter extends Controller {
 			}
 		}
 
+		if ($this->request->server['HTTPS']) {
+			$server = $this->config->get('config_ssl');
+		} else {
+			$server = $this->config->get('config_url');
+		}
+
+		if (is_file(DIR_IMAGE . $this->config->get('config_icon'))) {
+			$this->document->addLink($server . 'image/' . $this->config->get('config_icon'), 'icon');
+		}
+
+		$data['base'] = $server;
 		$data['contact'] = $this->url->link('information/contact');
 		$data['return'] = $this->url->link('account/return/add', '', true);
 		$data['sitemap'] = $this->url->link('information/sitemap');
@@ -28,6 +44,18 @@ class ControllerCommonFooter extends Controller {
 		$data['order'] = $this->url->link('account/order', '', true);
 		$data['wishlist'] = $this->url->link('account/wishlist', '', true);
 		$data['newsletter'] = $this->url->link('account/newsletter', '', true);
+		$data['all_blogs'] = $this->url->link('information/blogger/blogs');
+
+		$data['text_telephone'] = $this->config->get('config_telephone');
+        $data['text_name'] = $this->config->get('config_name');
+        $data['text_email'] = $this->config->get('config_email');
+		$data['text_fax'] = $this->config->get('config_fax');
+
+		if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
+			$data['logo'] = $server . 'image/' . $this->config->get('config_logo');
+		} else {
+			$data['logo'] = '';
+		}
 
 		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 

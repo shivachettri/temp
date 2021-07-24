@@ -1,42 +1,113 @@
-<h3>{{ heading_title }}</h3>
-<div class="row">
+<div class="tab-pane" id="bestseller">
+<div class="row rless">
+  <div id="best" class="owl-theme owl-carousel">
+{% set temp = 0 %}
+{% set setCol = 2 %}
  {% for product in products %}
-  <div class="product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12">
-    <div class="product-thumb transition">
-      <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a></div>
-      <div class="caption">
-        <h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
-        <p>{{ product.description }}</p>
-        {% if product.rating %}
-        <div class="rating">
-          {% for i in 1..5 %}
-          {% if product.rating < i %}
-          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-          {% else %}
-          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-          {% endif %}
-          {% endfor %}
-        </div>
+{% set temp = temp + 1 %}
+
+        {% if temp % setCol == 1 %}
+            <div class="multi-row">
         {% endif %}
-        {% if product.price %}
-        <p class="price">
+
+  <div class="product-layout col-xs-12 cless">
+    <div class="product-thumb transition">
+      <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive center-block" /></a>
+          <!-- Webiarch Images Start -->
+                        {% set t = 0 %}
+                          {% for webi_image in product.webi_images %}
+                          {% if t == 0 %}
+                           <a href="{{ product.href }}"><img src="{{ webi_image.popup }}" class="img-responsive second-img" alt="hover image"/></a>
+                          {% set t = t + 1 %}
+                          {% endif %}
+                        {% endfor %}
+        <!-- Webiarch Images End -->
+        {% if product.tag_per  %}
+          <span class="sale">{{ product.tag_per }}%</span>
+        {% endif %}
+      </div>
+
+     <div class="caption text-left">
+        {# <span class="probrand">{{ product.manufacturer }}</span> #}
+        <h4  class="protitle"><a href="{{ product.href }}">{{ product.name }}</a></h4>
+         
+        <div class="opbtn">
+          {% if product.rating %}
+          <div class="rating">
+            {% for i in 1..5 %}
+            {% if product.rating < i %}
+            <span class="fa fa-stack">
+              <i class="fa fa-star-o fa-stack-2x"></i>
+            </span>
+            {% else %}
+            <span class="fa fa-stack">
+              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
+            </span>
+            {% endif %}
+          {% endfor %}</div>{% else %}
+          <div class="rating">{% for i in 1..5 %}
+          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+          {% endfor %}</div>
+        {% endif %}
+         {% if product.price %}
+        <div class="price">
           {% if not product.special %}
           {{ product.price }}
           {% else %}
           <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
           {% endif %}
-          {% if product.tax %}
+         {#  {% if product.tax %}
           <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
-          {% endif %}
-        </p>
+          {% endif %} #}
+        </div>
         {% endif %}
       </div>
+       
+
       <div class="button-group">
-        <button type="button" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span></button>
-        <button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i></button>
-        <button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i></button>
+        <div class="topbt">
+          <button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><svg><use xlink:href="#heart" /></svg></button>
+          <button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><svg><use xlink:href="#compare"/></svg></button>
+          <div data-toggle="tooltip" title="Quickview"  class="bquickv"></div>
+        </div>
+        <button type="button" data-toggle="tooltip" onclick="cart.add('{{ product.product_id }}');" title="{{ button_cart }}" class="cartb"><svg><use xlink:href="#pcart"></use></svg><span></span></button>
       </div>
+      </div>
+      
     </div>
   </div>
+    {% if temp % setCol == 0 %}
+            </div>
+        {% endif %}
+
   {% endfor %}
+
+  {% if products|length % setCol != 0 %}
+    <!-- <h1>hii</h1> -->
+        </div>
+    {% endif %}
+
+      </div>
+    </div>
 </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("#best").owlCarousel({
+    itemsCustom : [
+    [0, 1],
+    [320, 2],
+    [600, 3],
+    [992, 4],
+    [1200, 4],
+    [1410, 5]
+    ],
+      // autoPlay: 1000,
+       navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+      navigation : true,
+      pagination:false
+    });
+    });
+</script>

@@ -1,26 +1,27 @@
-<div class="swiper-viewport">
-  <div id="slideshow{{ module }}" class="swiper-container">
-    <div class="swiper-wrapper"> {% for banner in banners %}
-      <div class="swiper-slide text-center">{% if banner.link %}<a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /></a>{% else %}<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />{% endif %}</div>
-      {% endfor %} </div>
+<div class="s-panel">
+  <div class="sliderow">
+  <div class="loader wrloader"></div>
+  <div id="slideshow{{ module }}" class="owl-carousel owl-theme">
+     {% for banner in banners %}
+        <div class="text-center">{% if banner.link %}<a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /></a>{% else %}<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />{% endif %}</div>
+        {% endfor %}
   </div>
-  <div class="swiper-pagination slideshow{{ module }}"></div>
-  <div class="swiper-pager">
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
   </div>
 </div>
-<script type="text/javascript"><!--
-$('#slideshow{{ module }}').swiper({
-	mode: 'horizontal',
-	slidesPerView: 1,
-	pagination: '.slideshow{{ module }}',
-	paginationClickable: true,
-	nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev',
-    spaceBetween: 30,
-	autoplay: 2500,
-    autoplayDisableOnInteraction: true,
-	loop: true
-});
---></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("#slideshow{{ module }}").owlCarousel({
+    itemsCustom : [
+    [0, 1]
+    ],
+      autoPlay: 3000,
+      animateIn: 'fadeIn',
+      animateOut: 'fadeOut',
+      loop: false,
+      navigationText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+      navigation : false,
+      pagination:true
+    });
+    });
+</script>

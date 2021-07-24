@@ -16,18 +16,6 @@ $_['text_content_bottom'] = 'Content Bottom';
 $_['text_column_left']    = 'Column Left';
 $_['text_column_right']   = 'Column Right';
 
-// Custom for Plazathemes
-$_['text_module_position1'] = 'Vertical Menu';
-$_['text_module_position2'] = 'Hozirontal Menu';
-$_['text_module_position3'] = 'Mobile Menu';
-$_['text_module_position4'] = 'Module Position 4';
-$_['text_module_position5'] = 'Module Position 5';
-$_['text_module_position6'] = 'Module Position 6';
-$_['text_module_position7'] = 'Module Position 7';
-$_['text_module_position8'] = 'Module Position 8';
-$_['text_module_position9'] = 'Module Position 9';
-$_['text_module_position10'] = 'Module Position 10';
-
 // Column
 $_['column_name']         = 'Layout Name';
 $_['column_action']       = 'Action';
@@ -46,3 +34,9 @@ $_['error_store']         = 'Warning: This layout cannot be deleted as it is cur
 $_['error_product']       = 'Warning: This layout cannot be deleted as it is currently assigned to %s products!';
 $_['error_category']      = 'Warning: This layout cannot be deleted as it is currently assigned to %s categories!';
 $_['error_information']   = 'Warning: This layout cannot be deleted as it is currently assigned to %s information pages!';
+
+//custom
+$_['text_ftop_full']    = 'Footer Top Full';
+$_['text_fbottom_full'] = 'Footer Bottom Full';
+$_['text_footer_left']    = 'Footer Left';
+$_['text_footer_right']   = 'Footer Right';

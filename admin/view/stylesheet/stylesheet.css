@@ -7,12 +7,6 @@ html, body {
 	color: #545454;
 	text-rendering: optimizeLegibility;
 }
-.fa-plaza {
-	width: 16px;
-	height: 16px;
-	background: url(../../../image/logo/plaza.png) center no-repeat;
-	background-size: contain;
-}
 h1, h2, h3, h4, h5, h6, p {
 	margin-top: 0;
 }
@@ -677,6 +671,7 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 	font-weight: 600;
 }
 
+}
 #marketplace-extension-info #banner img {
 	margin-left: auto;
 	margin-right: auto;
