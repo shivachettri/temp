@@ -1,4 +1,0 @@
-Name,Email [Optional],DOB,Gender,Address [Optional],District (ID),Discipline (ID),Athlete / Official ,Official Designation,Phone [Optional]
-Mr. User 1,user1@demo.com,12-12-1991,m,User 1 Address,1,4,a,,1231231231
-Mr. User 2,,11-11-1922,f,User 2 Address,1,4,o,m,
-Mr. User 3,user2@demo.com,10-10-1989,-,User 3 Address,2,1,o,c,
